@@ -9,19 +9,12 @@ const companySchema = new Schema({
     telephone: { type: Number, required : true},
     createdAt: { type: Date, required : true},
     updatedAt: { type: Date, required : true},
-    drivers:[{
-        name:{ type: String, required : true},
-        age:{ type: String, required : true},
-        image:{ type: String, required : true},
-    }],
-    cars:[{
-        name: {type: String, required : true},
-        model:{type: String, required : true},
-        year:{type: Date, required : true},
-        image:{type: String, required : true},
-    }]
+    drivers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Driver' }],
+    cars:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }]
+}, {timestamps: true}
+);
 
-})
+
 
 const Company = mongoose.model('Company', companySchema)
 module.exports = Company;
